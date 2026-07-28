@@ -1,0 +1,172 @@
+[
+  {
+    "id": "meta-full-stack-developer",
+    "title": "Meta Full Stack Developer: Front-End & Back-End from Scratch",
+    "platform": "Coursera",
+    "duration": "8 months (10 hrs/week)",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Full Stack Development",
+    "link": "https://www.coursera.org/specializations/meta-full-stack-developer"
+  },
+  {
+    "id": "ibm-full-stack-cloud-developer",
+    "title": "IBM Full Stack Software Developer Professional Certificate",
+    "platform": "Coursera",
+    "duration": "5 months (10 hrs/week)",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Full Stack Development",
+    "link": "https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer"
+  },
+  {
+    "id": "harvard-cs50-introduction-to-computer-science",
+    "title": "CS50: Harvard's Introduction to Computer Science + Web",
+    "platform": "edX/Harvard",
+    "duration": "Self-paced, ~10 weeks",
+    "price_type": "free",
+    "level": "Beginner",
+    "category": "Full Stack Development",
+    "link": "https://www.edx.org/learn/computer-science/harvard-university-cs50-s-introduction-to-computer-science"
+  },
+  {
+    "id": "the-odin-project-full-stack-js",
+    "title": "The Odin Project (Full Stack JS Path)",
+    "platform": "Odin Project",
+    "duration": "Self-paced, ~6 months",
+    "price_type": "free",
+    "level": "Beginner-Intermediate",
+    "category": "Full Stack Development",
+    "link": "https://www.theodinproject.com/paths/full-stack-javascript"
+  },
+  {
+    "id": "udemy-master-full-stack-web-development",
+    "title": "Master Full Stack Web Development With Projects",
+    "platform": "Udemy",
+    "duration": "Self-paced",
+    "price_type": "paid",
+    "level": "Beginner",
+    "category": "Full Stack Development",
+    "link": "https://www.udemy.com/course/the-complete-full-stack-web-development-masterclass-2026/"
+  },
+  {
+    "id": "coursera-machine-learning-specialization-andrew-ng",
+    "title": "Machine Learning Specialization (Andrew Ng)",
+    "platform": "Coursera",
+    "duration": "~3 months",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "AI/ML",
+    "link": "https://www.coursera.org/specializations/machine-learning-introduction"
+  },
+  {
+    "id": "coursera-ai-for-everyone",
+    "title": "AI For Everyone",
+    "platform": "Coursera",
+    "duration": "~6 hours",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "AI/ML",
+    "link": "https://www.coursera.org/learn/ai-for-everyone"
+  },
+  {
+    "id": "ibm-python-for-data-science",
+    "title": "Python for Data Science",
+    "platform": "IBM/Coursera",
+    "duration": "~5 weeks",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "AI/ML",
+    "link": "https://www.coursera.org/learn/python-for-applied-data-science-ai"
+  },
+  {
+    "id": "coursera-deep-learning-specialization",
+    "title": "Deep Learning Specialization",
+    "platform": "Coursera/DeepLearning.AI",
+    "duration": "~4 months",
+    "price_type": "freemium",
+    "level": "Intermediate",
+    "category": "AI/ML",
+    "link": "https://www.coursera.org/specializations/deep-learning"
+  },
+  {
+    "id": "google-cybersecurity-professional-certificate",
+    "title": "Google Cybersecurity Professional Certificate",
+    "platform": "Coursera",
+    "duration": "~6 months (10 hrs/week)",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Cybersecurity",
+    "link": "https://www.coursera.org/professional-certificates/google-cybersecurity"
+  },
+  {
+    "id": "isc2-certified-in-cybersecurity",
+    "title": "ISC2 Certified in Cybersecurity",
+    "platform": "ISC2",
+    "duration": "Self-paced",
+    "price_type": "free",
+    "level": "Beginner",
+    "category": "Cybersecurity",
+    "link": "https://www.isc2.org/certifications/cc"
+  },
+  {
+    "id": "udemy-the-complete-cyber-security-course",
+    "title": "The Complete Cyber Security Course: Hackers Exposed",
+    "platform": "Udemy",
+    "duration": "12 hours",
+    "price_type": "paid",
+    "level": "Beginner",
+    "category": "Cybersecurity",
+    "link": "https://www.udemy.com/course/the-complete-internet-security-privacy-course-volume-1/"
+  },
+  {
+    "id": "ibm-cybersecurity-analyst-professional-certificate",
+    "title": "IBM Cybersecurity Analyst Professional Certificate",
+    "platform": "Coursera",
+    "duration": "~8 months",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Cybersecurity",
+    "link": "https://www.coursera.org/professional-certificates/ibm-cybersecurity-analyst"
+  },
+  {
+    "id": "google-introduction-to-project-management",
+    "title": "Introduction to Project Management",
+    "platform": "Coursera/Google",
+    "duration": "~5 weeks",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Management Skills",
+    "link": "https://www.coursera.org/learn/project-management-foundations"
+  },
+  {
+    "id": "coursera-business-analysis-process-management",
+    "title": "Business Analysis & Process Management",
+    "platform": "Coursera",
+    "duration": "~4 weeks",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Management Skills",
+    "link": "https://www.coursera.org/projects/business-analysis-process-management"
+  },
+  {
+    "id": "northwestern-leadership-and-management",
+    "title": "Leadership and Management",
+    "platform": "Coursera/Northwestern",
+    "duration": "~1 month",
+    "price_type": "freemium",
+    "level": "Beginner",
+    "category": "Management Skills",
+    "link": "https://www.coursera.org/specializations/organizational-leadership"
+  },
+  {
+    "id": "toastmasters-public-speaking-skills",
+    "title": "Public Speaking Skills",
+    "platform": "LinkedIn Learning/Toastmasters",
+    "duration": "~5 hours",
+    "price_type": "paid",
+    "level": "Beginner",
+    "category": "Management Skills",
+    "link": "https://www.linkedin.com/learning/paths/public-speaking-skills-professional-certificate-by-toastmasters-international"
+  }
+]
