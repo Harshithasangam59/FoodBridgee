@@ -1,9 +1,12 @@
 # Dependencies
 node_modules/
+client/node_modules/
+server/node_modules/
 
 # Build output
 dist/
 build/
+client/dist/
 
 # Environment files
 .env
@@ -11,6 +14,10 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+client/.env
+client/.env.local
+server/.env
+server/.env.local
 
 # SQLite database files (generated at runtime)
 server/src/data/*.db
@@ -31,3 +38,9 @@ Thumbs.db
 
 # Coverage
 coverage/
+
+# Vercel
+.vercel/
+
+# Package lock files (optional - keep for reproducibility)
+# package-lock.json

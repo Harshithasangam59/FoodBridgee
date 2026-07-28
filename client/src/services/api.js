@@ -1,4 +1,6 @@
-const API_BASE_URL = '/api';
+// In production (Vercel), VITE_API_URL is set to the backend URL.
+// In local dev, use '/api' which is proxied by Vite to localhost:5000
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const fetchAPI = async (endpoint, options = {}) => {
   const token = localStorage.getItem('foodbridge_token');

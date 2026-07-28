@@ -14,9 +14,22 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS for frontend Vite dev server
+// Allow all origins in production (Vercel, custom domains) + localhost dev
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3000'],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (curl, mobile apps)
+    if (!origin) return callback(null, true);
+    // Allow localhost dev ports
+    if (origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) {
+      return callback(null, true);
+    }
+    // Allow all vercel.app domains
+    if (origin.endsWith('.vercel.app') || origin.includes('vercel.app')) {
+      return callback(null, true);
+    }
+    // Allow all for now - can be restricted later with specific domain
+    return callback(null, true);
+  },
   credentials: true
 }));
 
