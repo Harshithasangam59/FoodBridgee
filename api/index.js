@@ -1,57 +1,56 @@
+// Vercel Serverless Function - FoodBridge API
+// This wraps the Express app for Vercel's Node.js runtime
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authRoutes from '../server/src/routes/authRoutes.js';
-import donationRoutes from '../server/src/routes/donationRoutes.js';
-import impactRoutes from '../server/src/routes/impactRoutes.js';
-import notificationRoutes from '../server/src/routes/notificationRoutes.js';
-import aiRoutes from '../server/src/routes/aiRoutes.js';
-import { errorHandler } from '../server/src/middleware/errorHandler.js';
-import { getDb } from '../server/src/config/database.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 dotenv.config();
 
 const app = express();
 
-// Allow all Vercel origins + localhost for dev
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://food-bridges.vercel.app',
-  /\.vercel\.app$/,
-];
-
+// Allow all origins (Vercel + localhost)
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (
-      allowedOrigins.some(o =>
-        typeof o === 'string' ? o === origin : o.test(origin)
-      )
-    ) {
-      return callback(null, true);
-    }
-    callback(null, true); // Allow all for now; restrict in production
-  },
+  origin: true,
   credentials: true,
 }));
 
 app.use(express.json({ limit: '10mb' }));
 
+// Dynamically import routes (handles Vercel's module resolution)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Import routes
+const { default: authRoutes } = await import('../server/src/routes/authRoutes.js');
+const { default: donationRoutes } = await import('../server/src/routes/donationRoutes.js');
+const { default: impactRoutes } = await import('../server/src/routes/impactRoutes.js');
+const { default: notificationRoutes } = await import('../server/src/routes/notificationRoutes.js');
+const { default: aiRoutes } = await import('../server/src/routes/aiRoutes.js');
+const { errorHandler } = await import('../server/src/middleware/errorHandler.js');
+const { getDb } = await import('../server/src/config/database.js');
+
 // Initialize DB
-getDb().catch(err => console.error('DB init error:', err));
+try {
+  await getDb();
+  console.log('✅ FoodBridge DB initialized on Vercel');
+} catch (err) {
+  console.error('⚠️ DB init warning:', err.message);
+}
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
     app: 'FoodBridge API',
-    message: 'FoodBridge Platform is Operational',
+    env: process.env.VERCEL ? 'Vercel Production' : 'Local',
     timestamp: new Date().toISOString(),
   });
 });
 
-// API Routes
+// Mount routes
 app.use('/api/auth', authRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/impact', impactRoutes);
@@ -63,7 +62,7 @@ app.use(errorHandler);
 
 // 404
 app.use('*', (req, res) => {
-  res.status(404).json({ success: false, message: 'Route not found' });
+  res.status(404).json({ success: false, message: 'API route not found' });
 });
 
 export default app;
