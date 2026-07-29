@@ -4,6 +4,10 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { MobileBottomNav } from './components/MobileBottomNav';
+import { FloatingAiAssistant } from './components/FloatingAiAssistant';
+import { FloatingDonateButton } from './components/FloatingDonateButton';
+
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
@@ -60,9 +64,9 @@ function DashboardRouter() {
 
 function AppContent() {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100">
+    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 relative">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pb-16 md:pb-0">
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
@@ -121,6 +125,14 @@ function AppContent() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+
+      {/* Floating Interactive Widgets */}
+      <FloatingAiAssistant />
+      <FloatingDonateButton />
+
+      {/* Mobile Bottom Navigation */}
+      <MobileBottomNav />
+
       <Footer />
     </div>
   );

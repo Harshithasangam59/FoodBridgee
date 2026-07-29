@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, useMotionValue, useSpring, animate } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 import {
   HeartHandshake,
   Utensils,
@@ -22,14 +22,15 @@ import {
   Globe,
   TrendingUp,
   Package,
-  Phone,
   Wheat,
   Apple,
-  ShoppingBasket
+  ShoppingBasket,
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 import { impactAPI } from '../services/api';
 
-// ─── Animated Counter ───────────────────────────────────────────────────────
+// ─── Animated Counter Component ─────────────────────────────────────────────
 function AnimatedCounter({ target, suffix = '', prefix = '' }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -59,15 +60,15 @@ function FaqItem({ q, a, index }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ delay: index * 0.08 }}
       viewport={{ once: true }}
-      className="border border-slate-800 rounded-2xl overflow-hidden"
+      className="border border-slate-800 rounded-2xl overflow-hidden glass-card"
     >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-5 text-left bg-slate-900/60 hover:bg-slate-900/80 transition-colors group"
+        className="w-full flex items-center justify-between p-5 text-left bg-slate-900/60 hover:bg-slate-900/90 transition-colors group"
       >
-        <span className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">{q}</span>
+        <span className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">{q}</span>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>
           <ChevronDown className="w-4 h-4 text-emerald-400 shrink-0" />
         </motion.div>
@@ -78,7 +79,7 @@ function FaqItem({ q, a, index }) {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="overflow-hidden"
       >
-        <div className="px-5 pb-5 pt-2 text-sm text-slate-400 leading-relaxed bg-slate-950/40">
+        <div className="px-5 pb-5 pt-2 text-xs text-slate-300 leading-relaxed bg-slate-950/50">
           {a}
         </div>
       </motion.div>
@@ -86,289 +87,139 @@ function FaqItem({ q, a, index }) {
   );
 }
 
-// ─── Floating Blob ───────────────────────────────────────────────────────────
-function FloatingBlob({ className, delay = 0 }) {
-  return (
-    <motion.div
-      className={`absolute rounded-full blur-[120px] pointer-events-none ${className}`}
-      animate={{
-        scale: [1, 1.2, 1],
-        x: [0, 30, 0],
-        y: [0, -20, 0],
-      }}
-      transition={{
-        duration: 8 + delay,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        delay,
-      }}
-    />
-  );
-}
-
-// ─── Hero Network Constellation Background ────────────────────────────────
+// ─── Hero Constellation Background ──────────────────────────────────────────
 function HeroNetworkBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-
-      {/* ── Floating ambient orbs (pure CSS, GPU-composited) ─────────────── */}
-
-      {/* Orb 1 — large emerald, top-left quadrant */}
-      <div
-        className="hero-orb-1 absolute rounded-full pointer-events-none"
-        style={{
-          width: '520px',
-          height: '520px',
-          top: '-80px',
-          left: '-100px',
-          background: 'radial-gradient(circle, rgba(16,185,129,0.18) 0%, rgba(16,185,129,0.06) 55%, transparent 75%)',
-          filter: 'blur(72px)',
-        }}
-      />
-
-      {/* Orb 2 — medium teal, top-right quadrant */}
-      <div
-        className="hero-orb-2 absolute rounded-full pointer-events-none"
-        style={{
-          width: '380px',
-          height: '380px',
-          top: '-40px',
-          right: '-60px',
-          background: 'radial-gradient(circle, rgba(20,184,166,0.20) 0%, rgba(20,184,166,0.07) 55%, transparent 75%)',
-          filter: 'blur(64px)',
-        }}
-      />
-
-      {/* Orb 3 — small emerald, center-left */}
-      <div
-        className="hero-orb-3 absolute rounded-full pointer-events-none"
-        style={{
-          width: '260px',
-          height: '260px',
-          top: '40%',
-          left: '15%',
-          background: 'radial-gradient(circle, rgba(52,211,153,0.16) 0%, rgba(52,211,153,0.05) 60%, transparent 80%)',
-          filter: 'blur(56px)',
-        }}
-      />
-
-      {/* Orb 4 — medium teal, bottom-right */}
-      <div
-        className="hero-orb-4 absolute rounded-full pointer-events-none"
-        style={{
-          width: '340px',
-          height: '340px',
-          bottom: '0px',
-          right: '8%',
-          background: 'radial-gradient(circle, rgba(45,212,191,0.15) 0%, rgba(45,212,191,0.05) 55%, transparent 78%)',
-          filter: 'blur(60px)',
-        }}
-      />
-      {/* 1. Grid pattern backdrop */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.14)_1px,transparent_1px)] bg-[size:48px_48px]" />
-
-      {/* 2. Top Spotlight Radial Beam */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.28)_0%,rgba(20,184,166,0.12)_45%,transparent_75%)] blur-2xl pointer-events-none" />
-
-      {/* 3. SVG Network Lines */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.3" />
-          </linearGradient>
-          <linearGradient id="line-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#059669" stopOpacity="0.3" />
-          </linearGradient>
-        </defs>
-
-        {/* Network Lines Left Side */}
-        <line x1="12%" y1="22%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="8%" y1="44%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="2" />
-        <line x1="8%" y1="44%" x2="16%" y2="68%" stroke="url(#line-grad-1)" strokeWidth="1.5" />
-        <line x1="28%" y1="30%" x2="16%" y2="68%" stroke="url(#line-grad-1)" strokeWidth="1.5" />
-
-        {/* Network Lines Right Side */}
-        <line x1="72%" y1="30%" x2="88%" y2="22%" stroke="url(#line-grad-2)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="72%" y1="30%" x2="92%" y2="44%" stroke="url(#line-grad-2)" strokeWidth="2" />
-        <line x1="92%" y1="44%" x2="84%" y2="68%" stroke="url(#line-grad-2)" strokeWidth="1.5" />
-        <line x1="72%" y1="30%" x2="84%" y2="68%" stroke="url(#line-grad-2)" strokeWidth="1.5" />
-
-        {/* Center Connecting Mesh Lines */}
-        <line x1="28%" y1="30%" x2="50%" y2="25%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="4 4" />
-        <line x1="50%" y1="25%" x2="72%" y2="30%" stroke="url(#line-grad-2)" strokeWidth="1.5" strokeDasharray="4 4" />
-      </svg>
-
-      {/* 4. Glowing Node Circles with Food & NGO Icons (Desktop & Tablet) */}
-      <div className="relative w-full h-full max-w-7xl mx-auto hidden md:block">
-
-        {/* Node 1: Wheat (Top Left) */}
-        <motion.div
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.35)]">
-            <div className="w-13 h-13 rounded-full bg-slate-950/85 border border-emerald-400/60 flex items-center justify-center">
-              <Wheat className="w-6 h-6 text-emerald-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Node 2: Apple (Mid Left) */}
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[44%] left-[8%] -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(20,184,166,0.3)]">
-            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-teal-400/50 flex items-center justify-center">
-              <Apple className="w-5 h-5 text-teal-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Node 3: Heart / Sprout (Lower Left) */}
-        <motion.div
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-[68%] left-[16%] -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.25)]">
-            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-emerald-400/50 flex items-center justify-center">
-              <HeartHandshake className="w-5 h-5 text-emerald-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Node 4: Basket (Top Right) */}
-        <motion.div
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute top-[28%] right-[28%] translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.35)]">
-            <div className="w-13 h-13 rounded-full bg-slate-950/85 border border-emerald-400/60 flex items-center justify-center">
-              <ShoppingBasket className="w-6 h-6 text-emerald-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Node 5: Fork & Plate (Mid Right) */}
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-          className="absolute top-[44%] right-[8%] translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(20,184,166,0.3)]">
-            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-teal-400/50 flex items-center justify-center">
-              <Utensils className="w-5 h-5 text-teal-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Node 6: NGO Building (Lower Right) */}
-        <motion.div
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-          className="absolute top-[68%] right-[16%] translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.25)]">
-            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-emerald-400/50 flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-emerald-300" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Four-point star accents */}
-        <div className="absolute bottom-[18%] right-[5%] text-teal-400/50 animate-pulse">
-          <Sparkles className="w-7 h-7" />
-        </div>
+      {/* Background Image Overlay with dark vignette */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
+          alt="Food Donation Background"
+          className="w-full h-full object-cover object-center opacity-15 filter blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950" />
       </div>
 
-      {/* Top and Bottom Fade Vignette for seamless flow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950 pointer-events-none" />
+      {/* Floating ambient radial orbs */}
+      <div
+        className="hero-orb-1 absolute rounded-full pointer-events-none z-0"
+        style={{
+          width: '550px',
+          height: '550px',
+          top: '-100px',
+          left: '-100px',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.22) 0%, rgba(16,185,129,0.06) 55%, transparent 75%)',
+          filter: 'blur(80px)',
+        }}
+      />
+      <div
+        className="hero-orb-2 absolute rounded-full pointer-events-none z-0"
+        style={{
+          width: '400px',
+          height: '400px',
+          top: '-50px',
+          right: '-80px',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.22) 0%, rgba(20,184,166,0.07) 55%, transparent 75%)',
+          filter: 'blur(70px)',
+        }}
+      />
+
+      {/* Grid pattern backdrop */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.12)_1px,transparent_1px)] bg-[size:48px_48px] z-0" />
+
+      {/* Constellation SVG Lines */}
+      <svg className="absolute inset-0 w-full h-full z-0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.2" />
+          </linearGradient>
+        </defs>
+        <line x1="12%" y1="22%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
+        <line x1="8%" y1="44%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="2" />
+        <line x1="72%" y1="30%" x2="88%" y2="22%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
+        <line x1="72%" y1="30%" x2="92%" y2="44%" stroke="url(#line-grad-1)" strokeWidth="2" />
+      </svg>
+
+      {/* Floating Node Badges */}
+      <div className="relative w-full h-full max-w-7xl mx-auto hidden md:block z-10">
+        <motion.div
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-[28%] left-[24%]"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-emerald-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-emerald-500/20">
+            <Wheat className="w-7 h-7 text-emerald-400" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 14, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          className="absolute top-[44%] left-[6%]"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-slate-900/80 border border-teal-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-teal-500/20">
+            <Apple className="w-6 h-6 text-teal-300" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className="absolute top-[28%] right-[24%]"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-emerald-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-emerald-500/20">
+            <ShoppingBasket className="w-7 h-7 text-emerald-400" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute top-[44%] right-[6%]"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-slate-900/80 border border-teal-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-teal-500/20">
+            <Utensils className="w-6 h-6 text-teal-300" />
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
 
-// ─── Feature Card ────────────────────────────────────────────────────────────
-function FeatureCard({ icon: Icon, title, desc, color, delay }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.5 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -6, scale: 1.02 }}
-      className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 transition-all group cursor-default backdrop-blur-sm relative overflow-hidden"
-    >
-      <div className={`absolute top-0 right-0 w-32 h-32 ${color === 'emerald' ? 'bg-emerald-500/5' : 'bg-teal-500/5'} rounded-full blur-2xl transition-all group-hover:opacity-100 opacity-0`} />
-      <div className={`w-12 h-12 rounded-xl ${color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-teal-500/10 text-teal-400'} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-        <Icon className="w-6 h-6" />
-      </div>
-      <h3 className="text-lg font-bold text-slate-100 mb-2">{title}</h3>
-      <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
-    </motion.div>
-  );
-}
-
-// ─── Testimonial Card ────────────────────────────────────────────────────────
-function TestimonialCard({ text, name, role, initial, color, delay }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.5 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -4 }}
-      className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/20 space-y-4 relative overflow-hidden group"
-    >
-      <div className="flex items-center space-x-1 mb-3">
-        {[...Array(5)].map((_, i) => (
-          <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-        ))}
-      </div>
-      <p className="text-sm text-slate-300 italic leading-relaxed">"{text}"</p>
-      <div className="flex items-center space-x-3 pt-2 border-t border-slate-800">
-        <div className={`w-10 h-10 rounded-full ${color === 'emerald' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-teal-500/20 text-teal-400'} font-bold flex items-center justify-center text-sm`}>
-          {initial}
-        </div>
-        <div>
-          <h5 className="text-sm font-semibold text-white">{name}</h5>
-          <p className="text-xs text-slate-400">{role}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-const faqData = [
+// ─── Testimonials Data ──────────────────────────────────────────────────────
+const testimonials = [
   {
-    q: 'Who can register as a food donor on FoodBridge?',
-    a: 'Any food business or individual can register – restaurants, bakeries, hotels, supermarkets, caterers, event organizers, and home cooks. If you have surplus food that would otherwise go to waste, FoodBridge is for you.'
+    quote: "FoodBridge transformed our hotel's surplus food management. Instead of disposing untouched banquet meals, we feed 250+ people weekly!",
+    name: "Rajesh Kumar",
+    role: "Director of Catering, Grand Horizon Hotel",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=250&auto=format&fit=crop",
+    stats: "1,200+ Meals Donated"
   },
   {
-    q: 'How does the AI freshness estimation work?',
-    a: 'FoodBridge uses an intelligent rule-based AI engine that analyzes food type, pickup deadline, and description to generate an estimated safe consumption window. The system is built to be plugged into Google Gemini or OpenAI for enhanced predictions in the future.'
+    quote: "The live freshness estimates and instant NGO notification system let us claim high-quality prepared food within 30 minutes of posting.",
+    name: "Sister Maria D'Souza",
+    role: "Lead Coordinator, Hope Shelter NGO",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=250&auto=format&fit=crop",
+    stats: "850 Families Nourished"
   },
   {
-    q: 'Is there any cost to use FoodBridge?',
-    a: 'FoodBridge is completely free for both food donors and NGO partners. Our mission is to maximize food redistribution impact, not profit.'
-  },
-  {
-    q: 'How are NGOs verified on the platform?',
-    a: 'NGO accounts are registered with organizational details. All NGOs agree to our food safety and hygiene guidelines upon registration. Our team continuously monitors activity to ensure safe food handling standards are maintained.'
-  },
-  {
-    q: 'Can I generate a CSR report for tax or audit purposes?',
-    a: 'Yes! Donors have access to a professional, printable CSR report that includes itemized donation records, meals donated, people fed, and CO₂ emissions prevented. You can download it as a PDF directly from your dashboard.'
-  },
-  {
-    q: 'What happens if a donation expires without being reserved?',
-    a: 'Donations past their pickup deadline remain visible in your donation history with a "Pending" status but will not appear in the available listings for NGOs. We encourage setting realistic deadlines to maximize redistribution.'
+    quote: "Automated CSR reports give our restaurant chain itemized carbon offset proof for our annual sustainability audit and tax credits.",
+    name: "Anita Sharma",
+    role: "VP Sustainability, Artisan Bakery Group",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=250&auto=format&fit=crop",
+    stats: "3,500 kg CO₂ Prevented"
   }
+];
+
+// ─── Partners Showcase Data ──────────────────────────────────────────────────
+const partners = [
+  { name: "Urban Bistro", category: "Restaurant Partner" },
+  { name: "Green Earth NGO", category: "Verified NGO" },
+  { name: "Grand Horizon Hotel", category: "Hospitality Partner" },
+  { name: "Artisan Bakery", category: "Bakery Network" },
+  { name: "City Food Bank", category: "Shelter Network" }
 ];
 
 export function LandingPage() {
@@ -376,8 +227,10 @@ export function LandingPage() {
     totalMealsDonated: 1250,
     estimatedPeopleFed: 1250,
     co2SavedKg: 3125,
-    ngosConnected: 14
+    ngosConnected: 50
   });
+
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
     impactAPI.getMetrics()
@@ -391,83 +244,102 @@ export function LandingPage() {
     <div className="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden">
 
       {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-28 pb-40 md:pt-36 md:pb-52 bg-slate-950 border-b border-emerald-900/20">
-        {/* Constellation Network Mesh Background */}
+      <section className="relative overflow-hidden pt-28 pb-32 md:pt-36 md:pb-44 bg-slate-950 border-b border-emerald-900/20">
         <HeroNetworkBackground />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-8">
 
-            {/* Badge — CSS fade-in, delay 0 */}
-            <div className="hero-fade-in inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-medium shadow-lg backdrop-blur-sm">
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              >
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-              </motion.div>
-              <span>AI-Powered Food Waste Reduction Platform</span>
-            </div>
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold shadow-xl backdrop-blur-md"
+            >
+              <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
+              <span>AI-Powered Food Redistribution Platform</span>
+            </motion.div>
 
-            {/* Heading — CSS fade-in, delay 0.15s */}
-            <h1 className="hero-fade-in-delay-1 text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-5xl sm:text-7xl font-black tracking-tight text-white leading-[1.05]"
+            >
               Reduce Waste.
               <br />
-              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
+              <span className="text-gradient-emerald">
                 Feed More Lives.
               </span>
-            </h1>
+            </motion.h1>
 
-            {/* Subheading — CSS fade-in, delay 0.30s */}
-            <p className="hero-fade-in-delay-2 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-              FoodBridge connects restaurants, bakeries, hotels, and supermarkets with local NGOs in real-time — turning surplus food into immediate nourishment for families in need.
-            </p>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-medium"
+            >
+              FoodBridge connects restaurants, bakeries, hotels, and supermarkets directly with verified local NGOs in real-time — turning surplus food into immediate nourishment.
+            </motion.p>
 
-            {/* CTA Buttons — CSS fade-in, delay 0.45s */}
-            <div className="hero-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            {/* Call to action buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
+            >
               <Link
                 to="/signup?role=donor"
-                className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-xl font-bold shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105 flex items-center justify-center space-x-2 text-base"
+                className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-2xl font-extrabold shadow-2xl shadow-emerald-500/30 flex items-center justify-center space-x-2 text-base group"
               >
                 <span>Start Donating Food</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/available"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-slate-100 bg-slate-900/80 border border-emerald-500/40 hover:bg-slate-800 hover:border-emerald-400/60 transition-all flex items-center justify-center space-x-2 text-base backdrop-blur-sm"
+                className="btn-glass w-full sm:w-auto px-8 py-4 rounded-2xl font-bold flex items-center justify-center space-x-2 text-base"
               >
                 <Utensils className="w-5 h-5 text-emerald-400" />
-                <span>Browse as NGO</span>
+                <span>Browse Available Food</span>
               </Link>
-            </div>
+            </motion.div>
 
-            {/* Trust Badges — CSS fade-in, delay 0.60s */}
-            <div className="hero-fade-in-delay-4 flex flex-wrap justify-center gap-6 text-xs text-slate-400 pt-4">
+            {/* Trust Badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-400 pt-6"
+            >
               {[
-                { icon: CheckCircle2, text: 'Instant NGO Match' },
-                { icon: Zap, text: 'AI Freshness Engine' },
-                { icon: FileText, text: 'CSR Audit Ready' },
-                { icon: ShieldCheck, text: 'Secure & Private' },
+                { icon: CheckCircle2, text: 'Instant Match Algorithm' },
+                { icon: Zap, text: 'AI Freshness Scoring' },
+                { icon: FileText, text: 'CSR Audit Export' },
+                { icon: ShieldCheck, text: 'Hygienic Verification' },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center space-x-1.5">
+                <div key={text} className="flex items-center space-x-1.5 bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-800">
                   <Icon className="w-4 h-4 text-emerald-400" />
                   <span>{text}</span>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ─── STATISTICS SECTION ────────────────────────────────────────────── */}
-      <section className="py-14 bg-slate-900/40 border-y border-emerald-950/60 backdrop-blur-sm">
+      {/* ─── LIVE METRICS SECTION ─────────────────────────────────────────── */}
+      <section className="py-14 bg-slate-900/50 border-y border-slate-800/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {[
               { label: 'Meals Saved', value: stats.totalMealsDonated, suffix: '+', color: 'text-emerald-400' },
-              { label: 'CO₂ Prevented', value: stats.co2SavedKg, suffix: ' kg', color: 'text-teal-400' },
-              { label: 'NGOs Connected', value: stats.ngosConnected, suffix: '', color: 'text-emerald-300' },
-              { label: 'Hygienic Traceability', value: 100, suffix: '%', color: 'text-teal-300' },
+              { label: 'CO₂ Offset', value: stats.co2SavedKg, suffix: ' kg', color: 'text-teal-400' },
+              { label: 'NGO Partners', value: stats.ngosConnected, suffix: '+', color: 'text-emerald-300' },
+              { label: 'Safety Compliance', value: 100, suffix: '%', color: 'text-teal-300' },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -475,122 +347,95 @@ export function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 rounded-2xl bg-slate-900/60 border border-emerald-900/30 backdrop-blur-sm hover:border-emerald-500/30 transition-colors"
+                className="p-6 rounded-3xl glass-card hover:border-emerald-500/40 transition-all"
               >
-                <div className={`text-3xl sm:text-4xl font-extrabold mb-1 ${s.color}`}>
+                <div className={`text-3xl sm:text-5xl font-black mb-1.5 ${s.color}`}>
                   <AnimatedCounter target={s.value} suffix={s.suffix} />
                 </div>
-                <div className="text-sm font-medium text-slate-400">{s.label}</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">{s.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── FEATURES SECTION ──────────────────────────────────────────────── */}
+      {/* ─── CATEGORY & IMAGE SHOWCASE ────────────────────────────────────── */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase font-bold text-emerald-400 tracking-wider"
-          >
-            Why Choose FoodBridge
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-white"
-          >
-            Empowering Surplus Food Redistribution
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-slate-400 text-sm"
-          >
-            A complete ecosystem built for efficiency, transparency, and maximum impact.
-          </motion.p>
+          <span className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Surplus Food Categories</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white">What Food Can Be Donated?</h2>
+          <p className="text-slate-400 text-sm">Every edible surplus item can find an immediate home before expiration.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <FeatureCard icon={Utensils} title="Donate Food" color="emerald" delay={0} desc="Post available surplus meals in under 60 seconds with pickup deadlines, location, and photo upload." />
-          <FeatureCard icon={Building2} title="Find Donations" color="teal" delay={0.1} desc="NGOs instantly browse pending food listings sorted by proximity and nearest deadline for rapid retrieval." />
-          <FeatureCard icon={BarChart3} title="Impact Tracking" color="emerald" delay={0.2} desc="Visualize meals saved, people fed, and carbon emissions prevented using real-time interactive charts." />
-          <FeatureCard icon={FileText} title="CSR Reporting" color="teal" delay={0.3} desc="Generate downloadable PDF and printable CSR reports for corporate sustainability and compliance." />
-        </div>
-
-        {/* Bento Grid */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:col-span-2 p-8 rounded-3xl bg-gradient-to-br from-emerald-950/80 to-slate-900 border border-emerald-900/40 relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl group-hover:opacity-70 transition-opacity" />
-            <Zap className="w-8 h-8 text-emerald-400 mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-2">AI-Powered Freshness Engine</h3>
-            <p className="text-slate-400 text-sm max-w-md">
-              Our intelligent system analyzes food type and deadline to generate real-time freshness estimates — helping NGOs prioritize urgent pickups and donors communicate safety accurately.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['Gemini-Ready', 'OpenAI-Ready', 'Rule-Based Fallback', 'Instant Preview'].map(tag => (
-                <span key={tag} className="px-3 py-1 text-xs font-semibold bg-emerald-950 border border-emerald-500/30 text-emerald-300 rounded-full">{tag}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="p-8 rounded-3xl bg-gradient-to-br from-teal-950/60 to-slate-900 border border-teal-900/40 relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl" />
-            <Globe className="w-8 h-8 text-teal-400 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Zero Waste. Maximum Impact.</h3>
-            <p className="text-slate-400 text-sm">
-              Every meal donated prevents CO₂ emissions and feeds real people. Track your environmental impact in real-time.
-            </p>
-          </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Bakery & Fresh Bread",
+              desc: "Unsold artisan loaves, pastries, bagels, and rolls from local bakeries.",
+              image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop",
+              tag: "Fresh Daily"
+            },
+            {
+              title: "Prepared Buffet Meals",
+              desc: "Excess banquet dishes, catering trays, and hot meals packaged securely.",
+              image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop",
+              tag: "High Protein"
+            },
+            {
+              title: "Organic Fresh Produce",
+              desc: "Surplus fruits, vegetables, and greens from grocery markets.",
+              image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200&auto=format&fit=crop",
+              tag: "Nutrient Rich"
+            }
+          ].map((cat, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.15 }}
+              viewport={{ once: true }}
+              className="rounded-3xl overflow-hidden glass-card glass-card-hover group flex flex-col"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={cat.image}
+                  alt={cat.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-[10px] font-bold text-emerald-400 border border-emerald-500/30">
+                  {cat.tag}
+                </span>
+              </div>
+              <div className="p-6 space-y-2 flex-grow flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">{cat.title}</h3>
+                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">{cat.desc}</p>
+                </div>
+                <Link to="/available" className="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-400 pt-4 hover:underline">
+                  <span>Browse Available Items</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* ─── HOW IT WORKS ─────────────────────────────────────────────────── */}
-      <section id="how-it-works" className="py-24 bg-slate-900/30 border-y border-emerald-950/40">
+      {/* ─── HOW IT WORKS TIMELINE ────────────────────────────────────────── */}
+      <section id="how-it-works" className="py-24 bg-slate-900/40 border-y border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-xs uppercase font-bold text-emerald-400 tracking-wider"
-            >
-              Simple 4-Step Process
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl font-bold text-white"
-            >
-              How FoodBridge Works
-            </motion.h2>
+            <span className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Simple 4-Step Process</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-white">How FoodBridge Operates</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            {/* Connector lines */}
-            <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
-
             {[
-              { step: 1, title: 'Donor Posts Food', desc: 'Restaurants or bakeries list surplus food items with pickup location and deadline in under 60 seconds.', icon: Package },
-              { step: 2, title: 'NGO Reserves Food', desc: 'Verified NGOs claim the donation with a single click, locking it to prevent double reservation.', icon: Building2 },
-              { step: 3, title: 'Food Collected', desc: 'NGO collects food from donor location before deadline and marks the item as collected.', icon: CheckCircle2 },
-              { step: 4, title: 'Impact Recorded', desc: 'Platform automatically records meals saved and updates carbon offset metrics for CSR reports.', icon: TrendingUp },
+              { step: '01', title: 'Donor Posts Surplus', desc: 'Restaurants or bakeries list food items with pickup window & quantity in under 60 seconds.', icon: Package },
+              { step: '02', title: 'NGO Reserves Item', desc: 'Verified NGOs instantly claim the donation with a single tap to reserve pickup.', icon: Building2 },
+              { step: '03', title: 'Swift Pickup', desc: 'NGO volunteers retrieve the food before the deadline using digital receipt codes.', icon: CheckCircle2 },
+              { step: '04', title: 'Impact Recorded', desc: 'System automatically logs meals served, CO₂ offset, and updates CSR reports.', icon: TrendingUp },
             ].map(({ step, title, desc, icon: Icon }, i) => (
               <motion.div
                 key={step}
@@ -598,13 +443,13 @@ export function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className="relative text-center p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/30 transition-all group"
+                className="p-6 rounded-3xl glass-card glass-card-hover relative group text-center space-y-3"
               >
-                <div className="btn-emerald w-12 h-12 rounded-full font-extrabold flex items-center justify-center mx-auto mb-4 text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto text-emerald-300 font-black text-lg group-hover:scale-110 transition-transform">
                   {step}
                 </div>
-                <Icon className="w-6 h-6 text-emerald-400 mx-auto mb-3" />
-                <h4 className="text-base font-bold text-slate-100 mb-2">{title}</h4>
+                <Icon className="w-6 h-6 text-emerald-400 mx-auto" />
+                <h4 className="text-base font-bold text-white">{title}</h4>
                 <p className="text-xs text-slate-400 leading-relaxed">{desc}</p>
               </motion.div>
             ))}
@@ -612,120 +457,127 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─────────────────────────────────────────────────── */}
+      {/* ─── TESTIMONIALS CAROUSEL ────────────────────────────────────────── */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase font-bold text-emerald-400 tracking-wider"
-          >
-            Community Voices
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-white"
-          >
-            Trusted by Food Heroes
-          </motion.h2>
+          <span className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Community Impact Stories</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white">Trusted by Food Heroes</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <TestimonialCard
-            text="FoodBridge transformed our hotel's food management. Instead of throwing away untouched banquet meals, we now feed over 200 people every week!"
-            name="Rajesh Kumar"
-            role="Banquet Manager, Grand Hotel"
-            initial="R"
-            color="emerald"
-            delay={0}
-          />
-          <TestimonialCard
-            text="The AI freshness estimates and deadline alerts give us total peace of mind. We collect fresh meals within 1 hour of reservation."
-            name="Sister Maria"
-            role="Coordinator, Hope Foundation NGO"
-            initial="S"
-            color="teal"
-            delay={0.1}
-          />
-          <TestimonialCard
-            text="The automated CSR reporting helped our bakery chain achieve annual carbon offset targets and tax exemption documentation effortlessly."
-            name="Anita Sharma"
-            role="CSR Director, Green Bakery Chain"
-            initial="A"
-            color="emerald"
-            delay={0.2}
-          />
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            key={activeTestimonial}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4 }}
+            className="p-8 sm:p-12 rounded-3xl glass-card relative overflow-hidden flex flex-col md:flex-row items-center gap-8"
+          >
+            <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden shrink-0 border-2 border-emerald-500/40 shadow-2xl">
+              <img
+                src={testimonials[activeTestimonial].avatar}
+                alt={testimonials[activeTestimonial].name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="space-y-4 text-center md:text-left">
+              <div className="flex justify-center md:justify-start space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-base sm:text-lg text-slate-200 italic font-medium leading-relaxed">
+                "{testimonials[activeTestimonial].quote}"
+              </p>
+              <div>
+                <h4 className="text-base font-bold text-white">{testimonials[activeTestimonial].name}</h4>
+                <p className="text-xs text-slate-400">{testimonials[activeTestimonial].role}</p>
+                <span className="inline-block mt-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-[10px] font-extrabold border border-emerald-500/30">
+                  {testimonials[activeTestimonial].stats}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Carousel Navigation Controls */}
+          <div className="flex justify-center items-center space-x-4 mt-8">
+            <button
+              onClick={() => setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
+              className="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-emerald-500/40 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <div className="flex space-x-2">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveTestimonial(i)}
+                  className={`w-3 h-3 rounded-full transition-all ${activeTestimonial === i ? 'bg-emerald-400 w-8' : 'bg-slate-800'}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => setActiveTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}
+              className="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-emerald-500/40 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* ─── FAQ SECTION ──────────────────────────────────────────────────── */}
-      <section className="py-24 bg-slate-900/20 border-t border-emerald-950/30">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-3">
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-xs uppercase font-bold text-emerald-400 tracking-wider"
-            >
-              Got Questions?
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl font-bold text-white"
-            >
-              Frequently Asked Questions
-            </motion.h2>
-          </div>
-          <div className="space-y-3">
-            {faqData.map((faq, i) => (
-              <FaqItem key={i} q={faq.q} a={faq.a} index={i} />
+      {/* ─── PARTNERS & SUPPORTERS ────────────────────────────────────────── */}
+      <section className="py-16 bg-slate-900/30 border-y border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-slate-500">Supported by Leading Food Organizations</span>
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-70">
+            {partners.map((p, i) => (
+              <div key={i} className="flex items-center space-x-2 text-slate-300 font-extrabold text-sm sm:text-base">
+                <Building2 className="w-5 h-5 text-emerald-400" />
+                <span>{p.name}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ─── FAQ SECTION ──────────────────────────────────────────────────── */}
+      <section className="py-24 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 space-y-3">
+          <span className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Frequently Asked Questions</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white">Got Questions?</h2>
+        </div>
+        <div className="space-y-4">
+          {[
+            { q: "Who can register as a food donor?", a: "Any food business including restaurants, bakeries, hotels, caterers, and supermarkets can register for free." },
+            { q: "How does the AI freshness estimation work?", a: "Our AI model analyzes food type, cooking timestamp, and storage temperature to generate a safe pickup window." },
+            { q: "Is there any charge for using FoodBridge?", a: "FoodBridge is 100% free for both food donors and verified NGO partners." },
+            { q: "Can donors generate tax exemption CSR reports?", a: "Yes! Donors can download audit-ready PDF CSR reports detailing total meals saved and carbon emissions offset." }
+          ].map((faq, i) => (
+            <FaqItem key={i} q={faq.q} a={faq.a} index={i} />
+          ))}
+        </div>
+      </section>
+
       {/* ─── CTA BANNER ────────────────────────────────────────────────────── */}
-      <section className="py-20 relative overflow-hidden">
-        <FloatingBlob className="w-[500px] h-[500px] bg-emerald-500/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" delay={1} />
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-center p-12 rounded-3xl bg-gradient-to-br from-emerald-950/80 via-slate-900/90 to-teal-950/80 border border-emerald-700/20 backdrop-blur-sm shadow-2xl space-y-6"
-          >
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-              <HeartHandshake className="w-4 h-4" />
-              <span>Join 1,000+ Food Heroes</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white">Ready to Make a Difference?</h2>
-            <p className="text-slate-300 max-w-xl mx-auto text-base">
-              Start saving meals and nourishing communities today. Register as a food donor or NGO partner in minutes — completely free.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
-              <Link
-                to="/signup?role=donor"
-                className="btn-emerald px-8 py-4 rounded-xl font-bold transition-all hover:scale-105 shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2"
-              >
-                <span>Sign Up as Donor</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/signup?role=ngo"
-                className="px-8 py-4 rounded-xl font-bold text-slate-100 bg-slate-800/80 hover:bg-slate-700 border border-emerald-500/30 transition-all hover:scale-105 flex items-center justify-center space-x-2"
-              >
-                <Building2 className="w-5 h-5 text-teal-400" />
-                <span>Register as NGO</span>
-              </Link>
-            </div>
-            <p className="text-xs text-slate-500">No credit card required. 100% free platform.</p>
-          </motion.div>
+      <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-10 sm:p-16 rounded-3xl bg-gradient-to-br from-emerald-950/90 via-slate-900 to-teal-950/90 border border-emerald-500/30 text-center space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-extrabold">
+            <HeartHandshake className="w-4 h-4 text-emerald-400" />
+            <span>Join 1,000+ Active Food Heroes</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white">Ready to Make an Impact Today?</h2>
+          <p className="text-slate-300 max-w-xl mx-auto text-sm leading-relaxed">
+            Register your business or NGO in under 2 minutes. Start saving surplus food and feeding families immediately.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+            <Link to="/signup?role=donor" className="btn-emerald px-8 py-4 rounded-2xl font-extrabold">
+              Sign Up as Food Donor
+            </Link>
+            <Link to="/signup?role=ngo" className="btn-glass px-8 py-4 rounded-2xl font-extrabold">
+              Register as NGO Partner
+            </Link>
+          </div>
         </div>
       </section>
 
