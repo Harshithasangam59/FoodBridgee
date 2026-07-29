@@ -98,9 +98,9 @@ export function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="w-10 h-10 rounded-xl bg-emerald-400 flex items-center justify-center shadow-xl shadow-emerald-500/40 group-hover:scale-110 transition-transform">
-                <Leaf className="w-5 h-5 text-slate-950" fill="currentColor" />
+                <Leaf className="w-5.5 h-5.5 text-slate-950" fill="currentColor" />
               </div>
-              <span className="text-2xl font-black text-white tracking-tight">
+              <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 Food<span className="text-emerald-400">Bridge</span>
               </span>
             </Link>
