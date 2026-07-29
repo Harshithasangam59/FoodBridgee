@@ -201,15 +201,15 @@ export function LandingPage() {
     <div className="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden">
 
       {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-20 pb-32 md:pt-28 md:pb-44">
-        {/* Animated blobs */}
-        <FloatingBlob className="w-[700px] h-[700px] bg-emerald-500/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" delay={0} />
-        <FloatingBlob className="w-[400px] h-[400px] bg-teal-400/8 top-10 right-10" delay={2} />
-        <FloatingBlob className="w-[300px] h-[300px] bg-emerald-600/8 bottom-10 left-10" delay={4} />
+      <section className="relative overflow-hidden pt-24 pb-36 md:pt-32 md:pb-48 bg-gradient-to-b from-slate-950 via-emerald-950/40 to-slate-950 border-b border-emerald-900/20">
+        {/* Animated glowing background blobs */}
+        <FloatingBlob className="w-[850px] h-[850px] bg-emerald-500/15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" delay={0} />
+        <FloatingBlob className="w-[550px] h-[550px] bg-teal-400/12 top-10 right-10" delay={2} />
+        <FloatingBlob className="w-[450px] h-[450px] bg-emerald-600/12 bottom-10 left-10" delay={4} />
 
-        {/* Grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:48px_48px] opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+        {/* Tech radial mesh overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(#10b981_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-8">

@@ -96,11 +96,11 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2.5 group">
-              <div className="w-8 h-8 rounded-xl bg-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
-                <Leaf className="w-4.5 h-4.5 text-slate-950" fill="currentColor" />
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 rounded-xl bg-emerald-400 flex items-center justify-center shadow-xl shadow-emerald-500/40 group-hover:scale-110 transition-transform">
+                <Leaf className="w-5 h-5 text-slate-950" fill="currentColor" />
               </div>
-              <span className="text-lg font-extrabold text-white tracking-tight">
+              <span className="text-2xl font-black text-white tracking-tight">
                 Food<span className="text-emerald-400">Bridge</span>
               </span>
             </Link>
