@@ -207,11 +207,11 @@ export function LandingPage() {
           <img
             src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
             alt="Food Donation Community"
-            className="w-full h-full object-cover object-center opacity-25 mix-blend-luminosity scale-105"
+            className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105"
           />
           {/* Dark Radial & Linear Gradient Overlays for Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/80 to-slate-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-emerald-950/40 to-slate-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-emerald-950/35 to-slate-950/85" />
         </div>
 
         {/* Animated glowing background blobs */}
