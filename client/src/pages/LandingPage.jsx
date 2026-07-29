@@ -22,7 +22,10 @@ import {
   Globe,
   TrendingUp,
   Package,
-  Phone
+  Phone,
+  Wheat,
+  Apple,
+  ShoppingBasket
 } from 'lucide-react';
 import { impactAPI } from '../services/api';
 
@@ -100,6 +103,139 @@ function FloatingBlob({ className, delay = 0 }) {
         delay,
       }}
     />
+  );
+}
+
+// ─── Hero Network Constellation Background ────────────────────────────────
+function HeroNetworkBackground() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {/* 1. Grid pattern backdrop */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.14)_1px,transparent_1px)] bg-[size:48px_48px]" />
+
+      {/* 2. Top Spotlight Radial Beam */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.28)_0%,rgba(20,184,166,0.12)_45%,transparent_75%)] blur-2xl pointer-events-none" />
+
+      {/* 3. SVG Network Lines */}
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.3" />
+          </linearGradient>
+          <linearGradient id="line-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#059669" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+
+        {/* Network Lines Left Side */}
+        <line x1="12%" y1="22%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
+        <line x1="8%" y1="44%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="2" />
+        <line x1="8%" y1="44%" x2="16%" y2="68%" stroke="url(#line-grad-1)" strokeWidth="1.5" />
+        <line x1="28%" y1="30%" x2="16%" y2="68%" stroke="url(#line-grad-1)" strokeWidth="1.5" />
+
+        {/* Network Lines Right Side */}
+        <line x1="72%" y1="30%" x2="88%" y2="22%" stroke="url(#line-grad-2)" strokeWidth="1.5" strokeDasharray="6 4" />
+        <line x1="72%" y1="30%" x2="92%" y2="44%" stroke="url(#line-grad-2)" strokeWidth="2" />
+        <line x1="92%" y1="44%" x2="84%" y2="68%" stroke="url(#line-grad-2)" strokeWidth="1.5" />
+        <line x1="72%" y1="30%" x2="84%" y2="68%" stroke="url(#line-grad-2)" strokeWidth="1.5" />
+
+        {/* Center Connecting Mesh Lines */}
+        <line x1="28%" y1="30%" x2="50%" y2="25%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="4 4" />
+        <line x1="50%" y1="25%" x2="72%" y2="30%" stroke="url(#line-grad-2)" strokeWidth="1.5" strokeDasharray="4 4" />
+      </svg>
+
+      {/* 4. Glowing Node Circles with Food & NGO Icons (Desktop & Tablet) */}
+      <div className="relative w-full h-full max-w-7xl mx-auto hidden md:block">
+
+        {/* Node 1: Wheat (Top Left) */}
+        <motion.div
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.35)]">
+            <div className="w-13 h-13 rounded-full bg-slate-950/85 border border-emerald-400/60 flex items-center justify-center">
+              <Wheat className="w-6 h-6 text-emerald-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Node 2: Apple (Mid Left) */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[44%] left-[8%] -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(20,184,166,0.3)]">
+            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-teal-400/50 flex items-center justify-center">
+              <Apple className="w-5 h-5 text-teal-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Node 3: Heart / Sprout (Lower Left) */}
+        <motion.div
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[68%] left-[16%] -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-emerald-400/50 flex items-center justify-center">
+              <HeartHandshake className="w-5 h-5 text-emerald-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Node 4: Basket (Top Right) */}
+        <motion.div
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-[28%] right-[28%] translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.35)]">
+            <div className="w-13 h-13 rounded-full bg-slate-950/85 border border-emerald-400/60 flex items-center justify-center">
+              <ShoppingBasket className="w-6 h-6 text-emerald-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Node 5: Fork & Plate (Mid Right) */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          className="absolute top-[44%] right-[8%] translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(20,184,166,0.3)]">
+            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-teal-400/50 flex items-center justify-center">
+              <Utensils className="w-5 h-5 text-teal-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Node 6: NGO Building (Lower Right) */}
+        <motion.div
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+          className="absolute top-[68%] right-[16%] translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-400/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+            <div className="w-11 h-11 rounded-full bg-slate-950/85 border border-emerald-400/50 flex items-center justify-center">
+              <Building2 className="w-5 h-5 text-emerald-300" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Four-point star accents */}
+        <div className="absolute bottom-[18%] right-[5%] text-teal-400/50 animate-pulse">
+          <Sparkles className="w-7 h-7" />
+        </div>
+      </div>
+
+      {/* Top and Bottom Fade Vignette for seamless flow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950 pointer-events-none" />
+    </div>
   );
 }
 
@@ -202,24 +338,8 @@ export function LandingPage() {
 
       {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-28 pb-40 md:pt-36 md:pb-52 bg-slate-950 border-b border-emerald-900/20">
-        {/* Responsive Unsplash Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
-            alt="Food Donation Community"
-            className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105"
-          />
-          {/* Dark Radial & Linear Gradient Overlays for Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-emerald-950/35 to-slate-950/85" />
-        </div>
-
-        {/* Animated glowing background blobs */}
-        <FloatingBlob className="w-[850px] h-[850px] bg-emerald-500/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" delay={0} />
-        <FloatingBlob className="w-[550px] h-[550px] bg-teal-400/15 top-10 right-10 z-0" delay={2} />
-
-        {/* Tech radial mesh overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(#10b981_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-20 pointer-events-none z-0" />
+        {/* Constellation Network Mesh Background */}
+        <HeroNetworkBackground />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-8">
