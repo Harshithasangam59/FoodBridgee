@@ -97,7 +97,7 @@ export function Navbar() {
 
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2.5 group">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+              <div className="w-8 h-8 rounded-xl bg-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
                 <Leaf className="w-4.5 h-4.5 text-slate-950" fill="currentColor" />
               </div>
               <span className="text-lg font-extrabold text-white tracking-tight">
@@ -213,7 +213,7 @@ export function Navbar() {
                   </Link>
                   <Link
                     to="/signup"
-                    className="px-4 py-2 rounded-xl text-sm font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 transition-all shadow-lg shadow-emerald-500/20"
+                    className="btn-emerald px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-500/20"
                   >
                     Get Started
                   </Link>
@@ -287,7 +287,7 @@ export function Navbar() {
                       <Link to="/login" className="block w-full px-4 py-3 rounded-xl text-sm font-medium text-center text-slate-300 bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-all">
                         Sign In
                       </Link>
-                      <Link to="/signup" className="block w-full px-4 py-3 rounded-xl text-sm font-bold text-center text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400">
+                      <Link to="/signup" className="btn-emerald block w-full px-4 py-3 rounded-xl text-sm font-bold text-center">
                         Get Started
                       </Link>
                     </div>

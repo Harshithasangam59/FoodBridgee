@@ -259,7 +259,7 @@ export function LandingPage() {
             >
               <Link
                 to="/signup?role=donor"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105 flex items-center justify-center space-x-2 text-base"
+                className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-xl font-bold shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105 flex items-center justify-center space-x-2 text-base"
               >
                 <span>Start Donating Food</span>
                 <ArrowRight className="w-5 h-5" />
@@ -437,7 +437,7 @@ export function LandingPage() {
                 viewport={{ once: true }}
                 className="relative text-center p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/30 transition-all group"
               >
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-slate-950 font-extrabold flex items-center justify-center mx-auto mb-4 text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                <div className="btn-emerald w-12 h-12 rounded-full font-extrabold flex items-center justify-center mx-auto mb-4 text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
                   {step}
                 </div>
                 <Icon className="w-6 h-6 text-emerald-400 mx-auto mb-3" />
@@ -548,7 +548,7 @@ export function LandingPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
               <Link
                 to="/signup?role=donor"
-                className="px-8 py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 transition-all hover:scale-105 shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2"
+                className="btn-emerald px-8 py-4 rounded-xl font-bold transition-all hover:scale-105 shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2"
               >
                 <span>Sign Up as Donor</span>
                 <ArrowRight className="w-5 h-5" />

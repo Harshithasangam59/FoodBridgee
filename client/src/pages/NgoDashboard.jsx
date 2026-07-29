@@ -285,7 +285,7 @@ export function NgoDashboard() {
                       <button
                         onClick={() => handleMarkCollected(item.id)}
                         disabled={actionLoading === item.id}
-                        className="w-full py-3 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 disabled:opacity-60 transition-all flex items-center justify-center space-x-2 text-sm shadow-lg shadow-emerald-500/20"
+                        className="btn-emerald w-full py-3 rounded-xl font-bold disabled:opacity-60 transition-all flex items-center justify-center space-x-2 text-sm shadow-lg shadow-emerald-500/20"
                       >
                         <CheckCircle2 className="w-4 h-4" />
                         <span>{actionLoading === item.id ? 'Marking Collected...' : '✓ Mark as Collected'}</span>

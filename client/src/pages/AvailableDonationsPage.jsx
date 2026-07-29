@@ -287,7 +287,7 @@ export function AvailableDonationsPage() {
                       <button
                         onClick={() => handleReserve(item.id)}
                         disabled={reservingId === item.id}
-                        className="w-full py-3 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 disabled:opacity-60 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] flex items-center justify-center space-x-2 text-sm"
+                        className="btn-emerald w-full py-3 rounded-xl font-bold disabled:opacity-60 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] flex items-center justify-center space-x-2 text-sm"
                       >
                         {reservingId === item.id ? (
                           <>

@@ -119,7 +119,7 @@ export function DonorDashboard() {
             </div>
             <Link
               to="/donate"
-              className="shrink-0 px-6 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 shadow-xl shadow-emerald-500/20 transition-all hover:scale-105 flex items-center space-x-2"
+              className="btn-emerald shrink-0 px-6 py-3.5 rounded-xl font-bold shadow-xl shadow-emerald-500/20 transition-all hover:scale-105 flex items-center space-x-2"
             >
               <PlusCircle className="w-5 h-5" />
               <span>Donate Surplus Food</span>
@@ -332,7 +332,7 @@ export function DonorDashboard() {
               </div>
               <Link
                 to="/reports"
-                className="mt-4 px-5 py-2.5 rounded-xl font-semibold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 transition-all text-sm flex items-center justify-center space-x-2"
+                className="btn-emerald mt-4 px-5 py-2.5 rounded-xl font-semibold transition-all text-sm flex items-center justify-center space-x-2"
               >
                 <FileText className="w-4 h-4" />
                 <span>Generate Report</span>

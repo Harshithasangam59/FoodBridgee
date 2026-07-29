@@ -44,6 +44,16 @@
 }
 
 @layer utilities {
+  .btn-emerald {
+    background-color: #34d399 !important;
+    color: #020617 !important;
+  }
+
+  .btn-emerald:hover {
+    background-color: #6ee7b7 !important;
+    color: #020617 !important;
+  }
+
   .gradient-emerald {
     background: linear-gradient(135deg, #10b981, #0d9488);
   }

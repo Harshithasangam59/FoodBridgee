@@ -359,7 +359,7 @@ export function DonateFoodPage() {
                 disabled={loading}
                 whileHover={{ scale: loading ? 1 : 1.01 }}
                 whileTap={{ scale: loading ? 1 : 0.98 }}
-                className="w-full py-4 rounded-xl text-slate-950 font-bold bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 disabled:opacity-60 shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2 text-base"
+                className="btn-emerald w-full py-4 rounded-xl font-bold disabled:opacity-60 shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2 text-base"
               >
                 {loading ? (
                   <>

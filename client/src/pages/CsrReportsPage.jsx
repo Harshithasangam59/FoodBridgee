@@ -73,7 +73,7 @@ export function CsrReportsPage() {
               </button>
               <button
                 onClick={handlePrint}
-                className="px-4 py-2.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 transition-all text-xs flex items-center space-x-2 shadow-lg shadow-emerald-500/20"
+                className="btn-emerald px-4 py-2.5 rounded-xl font-bold transition-all text-xs flex items-center space-x-2 shadow-lg shadow-emerald-500/20"
               >
                 <Download className="w-4 h-4" />
                 <span>Download PDF</span>
