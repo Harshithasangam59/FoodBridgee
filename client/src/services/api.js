@@ -45,6 +45,22 @@ export const authAPI = {
 };
 
 export const donationAPI = {
+  uploadImage: async (formData) => {
+    const token = localStorage.getItem('foodbridge_token');
+    const response = await fetch(`${API_BASE_URL}/donations/upload`, {
+      method: 'POST',
+      headers: {
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+      },
+      body: formData
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || 'Image upload failed');
+    }
+    return data;
+  },
+
   createDonation: (donationData) => fetchAPI('/donations', {
     method: 'POST',
     body: JSON.stringify(donationData),
