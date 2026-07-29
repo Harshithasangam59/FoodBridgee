@@ -87,21 +87,11 @@ function FaqItem({ q, a, index }) {
   );
 }
 
-// ─── Hero Constellation Background ──────────────────────────────────────────
+// ─── Hero Constellation & Ambient Background ────────────────────────────────
 function HeroNetworkBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Background Image Overlay with dark vignette */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
-          alt="Food Donation Background"
-          className="w-full h-full object-cover object-center opacity-15 filter blur-[2px]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950" />
-      </div>
-
-      {/* Floating ambient radial orbs */}
+      {/* Ambient background glow orbs */}
       <div
         className="hero-orb-1 absolute rounded-full pointer-events-none z-0"
         style={{
@@ -109,7 +99,7 @@ function HeroNetworkBackground() {
           height: '550px',
           top: '-100px',
           left: '-100px',
-          background: 'radial-gradient(circle, rgba(16,185,129,0.22) 0%, rgba(16,185,129,0.06) 55%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.20) 0%, rgba(16,185,129,0.05) 55%, transparent 75%)',
           filter: 'blur(80px)',
         }}
       />
@@ -120,70 +110,13 @@ function HeroNetworkBackground() {
           height: '400px',
           top: '-50px',
           right: '-80px',
-          background: 'radial-gradient(circle, rgba(20,184,166,0.22) 0%, rgba(20,184,166,0.07) 55%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.20) 0%, rgba(20,184,166,0.06) 55%, transparent 75%)',
           filter: 'blur(70px)',
         }}
       />
 
       {/* Grid pattern backdrop */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.12)_1px,transparent_1px)] bg-[size:48px_48px] z-0" />
-
-      {/* Constellation SVG Lines */}
-      <svg className="absolute inset-0 w-full h-full z-0" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="line-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.2" />
-          </linearGradient>
-        </defs>
-        <line x1="12%" y1="22%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="8%" y1="44%" x2="28%" y2="30%" stroke="url(#line-grad-1)" strokeWidth="2" />
-        <line x1="72%" y1="30%" x2="88%" y2="22%" stroke="url(#line-grad-1)" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="72%" y1="30%" x2="92%" y2="44%" stroke="url(#line-grad-1)" strokeWidth="2" />
-      </svg>
-
-      {/* Floating Node Badges */}
-      <div className="relative w-full h-full max-w-7xl mx-auto hidden md:block z-10">
-        <motion.div
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[28%] left-[24%]"
-        >
-          <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-emerald-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-emerald-500/20">
-            <Wheat className="w-7 h-7 text-emerald-400" />
-          </div>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, 14, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          className="absolute top-[44%] left-[6%]"
-        >
-          <div className="w-14 h-14 rounded-2xl bg-slate-900/80 border border-teal-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-teal-500/20">
-            <Apple className="w-6 h-6 text-teal-300" />
-          </div>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          className="absolute top-[28%] right-[24%]"
-        >
-          <div className="w-16 h-16 rounded-2xl bg-slate-900/80 border border-emerald-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-emerald-500/20">
-            <ShoppingBasket className="w-7 h-7 text-emerald-400" />
-          </div>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, 12, 0] }}
-          transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          className="absolute top-[44%] right-[6%]"
-        >
-          <div className="w-14 h-14 rounded-2xl bg-slate-900/80 border border-teal-500/40 backdrop-blur-md flex items-center justify-center shadow-xl shadow-teal-500/20">
-            <Utensils className="w-6 h-6 text-teal-300" />
-          </div>
-        </motion.div>
-      </div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.10)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.10)_1px,transparent_1px)] bg-[size:48px_48px] z-0" />
     </div>
   );
 }
@@ -243,90 +176,164 @@ export function LandingPage() {
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden">
 
-      {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-28 pb-32 md:pt-36 md:pb-44 bg-slate-950 border-b border-emerald-900/20">
+      {/* ─── HERO SECTION WITH PROMINENT RELATABLE IMAGE ─────────────────────── */}
+      <section className="relative overflow-hidden pt-28 pb-24 md:pt-36 md:pb-36 bg-slate-950 border-b border-emerald-900/20">
         <HeroNetworkBackground />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold shadow-xl backdrop-blur-md"
-            >
-              <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
-              <span>AI-Powered Food Redistribution Platform</span>
-            </motion.div>
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
 
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl sm:text-7xl font-black tracking-tight text-white leading-[1.05]"
-            >
-              Reduce Waste.
-              <br />
-              <span className="text-gradient-emerald">
-                Feed More Lives.
-              </span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-medium"
-            >
-              FoodBridge connects restaurants, bakeries, hotels, and supermarkets directly with verified local NGOs in real-time — turning surplus food into immediate nourishment.
-            </motion.p>
-
-            {/* Call to action buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
-            >
-              <Link
-                to="/signup?role=donor"
-                className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-2xl font-extrabold shadow-2xl shadow-emerald-500/30 flex items-center justify-center space-x-2 text-base group"
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold shadow-xl backdrop-blur-md"
               >
-                <span>Start Donating Food</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/available"
-                className="btn-glass w-full sm:w-auto px-8 py-4 rounded-2xl font-bold flex items-center justify-center space-x-2 text-base"
-              >
-                <Utensils className="w-5 h-5 text-emerald-400" />
-                <span>Browse Available Food</span>
-              </Link>
-            </motion.div>
+                <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
+                <span>AI-Powered Surplus Food Redistribution</span>
+              </motion.div>
 
-            {/* Trust Badges */}
+              {/* Main Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="text-5xl sm:text-7xl font-black tracking-tight text-white leading-[1.05]"
+              >
+                Reduce Waste.
+                <br />
+                <span className="text-gradient-emerald">
+                  Feed More Lives.
+                </span>
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+              >
+                FoodBridge connects restaurants, bakeries, hotels, and supermarkets directly with verified local NGOs in real-time — turning surplus food into immediate nourishment for families in need.
+              </motion.p>
+
+              {/* Action buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+              >
+                <Link
+                  to="/signup?role=donor"
+                  className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-2xl font-extrabold shadow-2xl shadow-emerald-500/30 flex items-center justify-center space-x-2 text-base group"
+                >
+                  <span>Start Donating Food</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/available"
+                  className="btn-glass w-full sm:w-auto px-8 py-4 rounded-2xl font-bold flex items-center justify-center space-x-2 text-base"
+                >
+                  <Utensils className="w-5 h-5 text-emerald-400" />
+                  <span>Browse Available Food</span>
+                </Link>
+              </motion.div>
+
+              {/* Trust Badges */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-400 pt-4"
+              >
+                {[
+                  { icon: CheckCircle2, text: 'Instant NGO Match' },
+                  { icon: Zap, text: 'AI Freshness Engine' },
+                  { icon: FileText, text: 'CSR Audit Ready' },
+                  { icon: ShieldCheck, text: 'Hygienic Verification' },
+                ].map(({ icon: Icon, text }) => (
+                  <div key={text} className="flex items-center space-x-1.5 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800">
+                    <Icon className="w-4 h-4 text-emerald-400" />
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right Column — Prominent Feature Showcase Hero Image */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-400 pt-6"
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="lg:col-span-5 relative"
             >
-              {[
-                { icon: CheckCircle2, text: 'Instant Match Algorithm' },
-                { icon: Zap, text: 'AI Freshness Scoring' },
-                { icon: FileText, text: 'CSR Audit Export' },
-                { icon: ShieldCheck, text: 'Hygienic Verification' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center space-x-1.5 bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-800">
-                  <Icon className="w-4 h-4 text-emerald-400" />
-                  <span>{text}</span>
+              {/* Outer Glow Ring */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-3xl blur-2xl opacity-60 pointer-events-none" />
+
+              {/* Hero Image Glass Container */}
+              <div className="relative rounded-3xl overflow-hidden glass-card border border-emerald-500/40 p-3 shadow-2xl space-y-3 bg-slate-900/90">
+                <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden group">
+                  <img
+                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop"
+                    alt="Volunteers Sharing Fresh Food Donation"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+
+                  {/* Floating Badge 1: Live Status */}
+                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-slate-950/90 backdrop-blur-md border border-emerald-400 text-[11px] font-extrabold text-emerald-300 flex items-center space-x-2 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>Live Food Redistribution Active</span>
+                  </div>
+
+                  {/* Floating Badge 2: AI Freshness Rating */}
+                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-slate-800 flex items-center justify-between text-xs">
+                    <div className="flex items-center space-x-2">
+                      <Zap className="w-4 h-4 text-emerald-400" />
+                      <span className="font-bold text-white">AI Freshness Score: <strong className="text-emerald-400">98% Optimal</strong></span>
+                    </div>
+                    <span className="text-[10px] text-slate-400 font-semibold">15 min pickup window</span>
+                  </div>
                 </div>
-              ))}
+
+                {/* Sub-Feature Image Gallery Row */}
+                <div className="grid grid-cols-3 gap-2 pt-1">
+                  <div className="relative h-20 rounded-xl overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=300&auto=format&fit=crop"
+                      alt="Bakery Bread"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40" />
+                    <span className="absolute bottom-1 left-1.5 text-[9px] font-bold text-white drop-shadow">Bakery</span>
+                  </div>
+                  <div className="relative h-20 rounded-xl overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=300&auto=format&fit=crop"
+                      alt="Prepared Meals"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40" />
+                    <span className="absolute bottom-1 left-1.5 text-[9px] font-bold text-white drop-shadow">Hot Meals</span>
+                  </div>
+                  <div className="relative h-20 rounded-xl overflow-hidden group">
+                    <img
+                      src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=300&auto=format&fit=crop"
+                      alt="Fresh Vegetables"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40" />
+                    <span className="absolute bottom-1 left-1.5 text-[9px] font-bold text-white drop-shadow">Produce</span>
+                  </div>
+                </div>
+              </div>
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -499,7 +506,7 @@ export function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Carousel Navigation Controls */}
+          {/* Carousel Controls */}
           <div className="flex justify-center items-center space-x-4 mt-8">
             <button
               onClick={() => setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
