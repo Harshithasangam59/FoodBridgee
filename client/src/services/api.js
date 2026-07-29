@@ -13,7 +13,9 @@ const mockUser = {
 };
 
 const mockMetrics = {
-  mealsSaved: 500,
+  totalMealsDonated: 1250,
+  estimatedPeopleFed: 1250,
+  co2SavedKg: 3125,
   ngosConnected: 50,
   totalDonations: 120,
   activeDonors: 35,
@@ -73,7 +75,8 @@ export const authAPI = {
 };
 
 export const donationAPI = {
-  uploadImage: async (formData) => USE_MOCK ? ({ url: "/uploads/placeholder.png" }) : async () => {
+  uploadImage: async (formData) => {
+    if (USE_MOCK) return { url: "/uploads/placeholder.png" };
     const token = localStorage.getItem('foodbridge_token');
     const response = await fetch(`${API_BASE_URL}/donations/upload`, {
       method: 'POST',
@@ -83,7 +86,7 @@ export const donationAPI = {
     const data = await response.json();
     if (!response.ok) throw new Error(data.message || 'Image upload failed');
     return data;
-  }(),
+  },
   createDonation: async (donationData) => USE_MOCK ? ({ ...donationData, id: Date.now(), status: "PENDING", created_at: new Date().toISOString() }) : fetchAPI('/donations', { method: 'POST', body: JSON.stringify(donationData) }),
   getAvailableDonations: async (filters = {}) => USE_MOCK ? mockDonations : fetchAPI('/donations/available', { method: 'GET' }),
   getMyDonations: async () => USE_MOCK ? mockDonations.filter((d) => d.donor_id === mockUser.id) : fetchAPI('/donations/my-donations', { method: 'GET' }),
@@ -94,7 +97,9 @@ export const donationAPI = {
 };
 
 export const impactAPI = {
-  getMetrics: async () => USE_MOCK ? mockMetrics : fetchAPI('/impact/metrics', { method: 'GET' }),
+  getMetrics: async () => USE_MOCK
+    ? { metrics: mockMetrics }
+    : fetchAPI('/impact/metrics', { method: 'GET' }),
 };
 
 export const aiAPI = {
