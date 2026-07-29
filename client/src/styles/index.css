@@ -78,13 +78,96 @@
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50%       { transform: translateY(-10px); }
   }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Hero Orb Animations
+     Pure CSS · GPU-composited (transform + opacity only, no layout repaints)
+     Each orb has a unique duration + delay so they NEVER sync → feels organic
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Orb 1 — large emerald top-left: arcs up-left then sweeps down-right */
+  @keyframes orb-drift-1 {
+    0%   { transform: translate(0px,   0px)   scale(1);    opacity: 0.55; }
+    25%  { transform: translate(-38px, -30px) scale(1.08); opacity: 0.65; }
+    55%  { transform: translate(28px,  -52px) scale(0.96); opacity: 0.50; }
+    80%  { transform: translate(48px,  -18px) scale(1.04); opacity: 0.60; }
+    100% { transform: translate(0px,   0px)   scale(1);    opacity: 0.55; }
+  }
+
+  /* Orb 2 — medium teal top-right: slow rightward drift + vertical bob */
+  @keyframes orb-drift-2 {
+    0%   { transform: translate(0px,   0px)   scale(1);    opacity: 0.45; }
+    30%  { transform: translate(44px, -24px)  scale(1.06); opacity: 0.55; }
+    60%  { transform: translate(20px,  30px)  scale(0.94); opacity: 0.42; }
+    85%  { transform: translate(-20px, 14px)  scale(1.03); opacity: 0.50; }
+    100% { transform: translate(0px,   0px)   scale(1);    opacity: 0.45; }
+  }
+
+  /* Orb 3 — small emerald center-left: loose figure-8 path, very slow */
+  @keyframes orb-drift-3 {
+    0%   { transform: translate(0px,   0px)   scale(1);    opacity: 0.40; }
+    20%  { transform: translate(30px, -40px)  scale(1.05); opacity: 0.50; }
+    40%  { transform: translate(-10px, -60px) scale(0.95); opacity: 0.38; }
+    65%  { transform: translate(-42px, -25px) scale(1.07); opacity: 0.48; }
+    85%  { transform: translate(-18px,  12px) scale(0.98); opacity: 0.42; }
+    100% { transform: translate(0px,   0px)   scale(1);    opacity: 0.40; }
+  }
+
+  /* Orb 4 — medium teal bottom-right: gentle circular drift */
+  @keyframes orb-drift-4 {
+    0%   { transform: translate(0px,   0px)   scale(1);    opacity: 0.38; }
+    35%  { transform: translate(-24px, -36px) scale(1.05); opacity: 0.48; }
+    70%  { transform: translate(18px,  -18px) scale(0.97); opacity: 0.35; }
+    100% { transform: translate(0px,   0px)   scale(1);    opacity: 0.38; }
+  }
+
+  /* Animation utility classes */
+  .hero-orb-1 {
+    animation: orb-drift-1 14s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .hero-orb-2 {
+    animation: orb-drift-2 18s ease-in-out infinite 2s;
+    will-change: transform, opacity;
+  }
+  .hero-orb-3 {
+    animation: orb-drift-3 22s ease-in-out infinite 5s;
+    will-change: transform, opacity;
+  }
+  .hero-orb-4 {
+    animation: orb-drift-4 16s ease-in-out infinite 9s;
+    will-change: transform, opacity;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Hero Text Fade-in
+     Uses cubic-bezier(0.22, 1, 0.36, 1) — a natural "spring" easing so text
+     slides up and snaps into place rather than linearly fading in.
+     `animation-fill-mode: both` keeps opacity:0 before the delay fires.
+     ───────────────────────────────────────────────────────────────────────── */
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-fade-in          { animation: hero-fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1)        both; }
+  .hero-fade-in-delay-1  { animation: hero-fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s  both; }
+  .hero-fade-in-delay-2  { animation: hero-fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.30s  both; }
+  .hero-fade-in-delay-3  { animation: hero-fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s  both; }
+  .hero-fade-in-delay-4  { animation: hero-fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.60s  both; }
 
   /* Print styles for CSR Reports */
   @media print {
-    .print\:hidden { display: none !important; }
-    .print\:bg-white { background-color: white !important; }
+    .print\:hidden         { display: none !important; }
+    .print\:bg-white       { background-color: white !important; }
     .print\:text-slate-900 { color: #0f172a !important; }
     .print\:text-emerald-700 { color: #047857 !important; }
     .print\:border-slate-300 { border-color: #cbd5e1 !important; }

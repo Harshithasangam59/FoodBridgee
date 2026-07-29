@@ -110,6 +110,60 @@ function FloatingBlob({ className, delay = 0 }) {
 function HeroNetworkBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+
+      {/* ── Floating ambient orbs (pure CSS, GPU-composited) ─────────────── */}
+
+      {/* Orb 1 — large emerald, top-left quadrant */}
+      <div
+        className="hero-orb-1 absolute rounded-full pointer-events-none"
+        style={{
+          width: '520px',
+          height: '520px',
+          top: '-80px',
+          left: '-100px',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.18) 0%, rgba(16,185,129,0.06) 55%, transparent 75%)',
+          filter: 'blur(72px)',
+        }}
+      />
+
+      {/* Orb 2 — medium teal, top-right quadrant */}
+      <div
+        className="hero-orb-2 absolute rounded-full pointer-events-none"
+        style={{
+          width: '380px',
+          height: '380px',
+          top: '-40px',
+          right: '-60px',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.20) 0%, rgba(20,184,166,0.07) 55%, transparent 75%)',
+          filter: 'blur(64px)',
+        }}
+      />
+
+      {/* Orb 3 — small emerald, center-left */}
+      <div
+        className="hero-orb-3 absolute rounded-full pointer-events-none"
+        style={{
+          width: '260px',
+          height: '260px',
+          top: '40%',
+          left: '15%',
+          background: 'radial-gradient(circle, rgba(52,211,153,0.16) 0%, rgba(52,211,153,0.05) 60%, transparent 80%)',
+          filter: 'blur(56px)',
+        }}
+      />
+
+      {/* Orb 4 — medium teal, bottom-right */}
+      <div
+        className="hero-orb-4 absolute rounded-full pointer-events-none"
+        style={{
+          width: '340px',
+          height: '340px',
+          bottom: '0px',
+          right: '8%',
+          background: 'radial-gradient(circle, rgba(45,212,191,0.15) 0%, rgba(45,212,191,0.05) 55%, transparent 78%)',
+          filter: 'blur(60px)',
+        }}
+      />
       {/* 1. Grid pattern backdrop */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.14)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
@@ -344,12 +398,8 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-8">
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-medium shadow-lg backdrop-blur-sm"
-            >
+            {/* Badge — CSS fade-in, delay 0 */}
+            <div className="hero-fade-in inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-medium shadow-lg backdrop-blur-sm">
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
@@ -357,36 +407,24 @@ export function LandingPage() {
                 <Sparkles className="w-4 h-4 text-emerald-400" />
               </motion.div>
               <span>AI-Powered Food Waste Reduction Platform</span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-[1.05]"
-            >
+            {/* Heading — CSS fade-in, delay 0.15s */}
+            <h1 className="hero-fade-in-delay-1 text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">
               Reduce Waste.
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
                 Feed More Lives.
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto"
-            >
+            {/* Subheading — CSS fade-in, delay 0.30s */}
+            <p className="hero-fade-in-delay-2 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
               FoodBridge connects restaurants, bakeries, hotels, and supermarkets with local NGOs in real-time — turning surplus food into immediate nourishment for families in need.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
-            >
+            {/* CTA Buttons — CSS fade-in, delay 0.45s */}
+            <div className="hero-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link
                 to="/signup?role=donor"
                 className="btn-emerald w-full sm:w-auto px-8 py-4 rounded-xl font-bold shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105 flex items-center justify-center space-x-2 text-base"
@@ -401,15 +439,10 @@ export function LandingPage() {
                 <Utensils className="w-5 h-5 text-emerald-400" />
                 <span>Browse as NGO</span>
               </Link>
-            </motion.div>
+            </div>
 
-            {/* Trust Badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-6 text-xs text-slate-400 pt-4"
-            >
+            {/* Trust Badges — CSS fade-in, delay 0.60s */}
+            <div className="hero-fade-in-delay-4 flex flex-wrap justify-center gap-6 text-xs text-slate-400 pt-4">
               {[
                 { icon: CheckCircle2, text: 'Instant NGO Match' },
                 { icon: Zap, text: 'AI Freshness Engine' },
@@ -421,7 +454,7 @@ export function LandingPage() {
                   <span>{text}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
